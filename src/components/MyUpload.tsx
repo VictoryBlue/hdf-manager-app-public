@@ -7,6 +7,8 @@ import { dalImg, uploadActionUrl } from '../utils/tools';
 
 const getBase64 = (img: RcFile, callback: (url: string) => void) => {
   const reader = new FileReader();
+
+  //Note: The image contents are stored in the `result` property as a Data URL
   reader.addEventListener('load', () => callback(reader.result as string));
   reader.readAsDataURL(img);
 };
@@ -62,9 +64,9 @@ const MyUpload = ({ imageUrl, setImageUrl }: MyUploadProps) => {
   return (
     <Upload
       // name 表示服务器端接口接收的数据的属性名
-      name='file'
-      listType='picture-card'
-      className='avatar-uploader'
+      name="file"
+      listType="picture-card"
+      className="avatar-uploader"
       showUploadList={false}
       // action 表示服务器端的文件上传接口地址
       action={uploadActionUrl}
@@ -72,7 +74,7 @@ const MyUpload = ({ imageUrl, setImageUrl }: MyUploadProps) => {
       onChange={handleChange}
     >
       {imageUrl ? (
-        <img src={dalImg(imageUrl)} alt='avatar' style={{ width: '100%' }} />
+        <img src={dalImg(imageUrl)} alt="avatar" style={{ width: '100%' }} />
       ) : (
         uploadButton
       )}
